@@ -117,7 +117,7 @@ Resources:
     Type: AWS::EC2::NatGateway
     Properties:
       AllocatedId: !GetAtt SimNatGateway1EIP.AllocationId
-      SubnetId: !Ref PublicSubnet1
+      SubnetId: !Ref SimPublicSubnet1
       Tags:
         - Key: AppCode
           Value: SimSys
@@ -126,7 +126,7 @@ Resources:
     Type: AWS::EC2::NatGateway
     Properties:
       AllocatedId: !GetAtt SimNatGateway2EIP.AllocationId
-      SubnetId: !Ref PublicSubnet2
+      SubnetId: !Ref SimPublicSubnet2
       Tags:
         - Key: AppCode
           Value: SimSys
