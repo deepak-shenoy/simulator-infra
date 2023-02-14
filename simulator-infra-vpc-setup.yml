@@ -20,6 +20,7 @@ Mappings:
       PublicSubnet2CIDR: 10.192.11.0/24
       PrivateSubnet1CIDR: 10.192.20.0/24
       PrivateSubnet2CIDR: 10.192.21.0/24
+
 Resources:
   SimVPC:
     Type: AWS::EC2::VPC
@@ -28,15 +29,68 @@ Resources:
       EnableDnsSupport: true
       EnableDnsHostnames: true
       Tags:
+        - Key: AppCode
+          Value: SimSys
         - Key: Name
           Value: Simulator Environment
+
   SimInternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
+        - Key: AppCode
+          Value: SimSys
         - Key: Name
           Value: Simulator Environment Internet Gateway
+
   SimInternetGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       InternetGatewayId: !Ref SimInternetGateway
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+        - Key: Name
+          Value: Simulator Environment Gateway Attachment
+
+  SimPublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SimVPC
+      AvailabilityZone: !Select [0, !GetAZs 'us-east-1']
+      CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PublicSubnet1CIDR]
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimPublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SimVPC
+      AvailabilityZone: !Select [1, !GetAZs 'us-east-1']
+      CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PublicSubnet2CIDR]
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimPrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SimVPC
+      AvailabilityZone: !Select [0, !GetAZz, 'us-east-1']
+      CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PrivateSubnet1CIDR]
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimPrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref SimVPC
+      AvailabilityZone: !Select [1, !GetAZz, 'us-east-1']
+      CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PrivateSubnet2CIDR]
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: AppCode
+          Value: SimSys
