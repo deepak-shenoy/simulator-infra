@@ -129,6 +129,8 @@ Resources:
       AllocationId: !GetAtt SimNatGateway1EIP.AllocationId
       SubnetId: !Ref SimPublicSubnet1
       Tags:
+        - Key: Name
+          Value: SimSys - NatGateway 1
         - Key: AppCode
           Value: SimSys
 
@@ -138,6 +140,8 @@ Resources:
       AllocationId: !GetAtt SimNatGateway2EIP.AllocationId
       SubnetId: !Ref SimPublicSubnet2
       Tags:
+        - Key: Name
+          Value: SimSys - NatGateway 2
         - Key: AppCode
           Value: SimSys
 
