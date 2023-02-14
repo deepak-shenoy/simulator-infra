@@ -41,6 +41,8 @@ Resources:
         - Key: AppCode
           Value: SimSys
         - Key: Name
+          Value: SimSys
+        - Key: Description
           Value: Simulator Environment Internet Gateway
 
   SimInternetGatewayAttachment:
@@ -132,6 +134,8 @@ Resources:
     Properties:
       VpcId: !Ref SimVPC
       Tags:
+        - Key: Name
+          Value: SimSys
         - Key: AppCode
           Value: SimSys
 
@@ -160,6 +164,8 @@ Resources:
     Properties:
       VpcId: !Ref SimVPC
       Tags:
+        - Key: Name
+          Value: SimSys
         - Key: AppCode
           Value: SimSys
 
@@ -181,6 +187,8 @@ Resources:
     Properties:
       VpcId: !Ref SimVPC
       Tags:
+        - Key: Name
+          Value: SimSys
         - Key: AppCode
           Value: SimSys
 
@@ -203,6 +211,12 @@ Resources:
       GroupName: "no-ingress-sg"
       GroupDescription: "Security group with no ingress rule"
       VpcId: !Ref SimVPC
+      Tags:
+        - Key: Name
+          Value: SimSys
+        - Key: AppCode
+          Value: SimSys
+
 
 Outputs:
   VPC:
