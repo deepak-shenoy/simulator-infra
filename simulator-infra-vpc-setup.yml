@@ -1,0 +1,42 @@
+#--------------------------------------------------------------------------------------------------------------------
+#
+# Simulator Infrastructure Component Setup
+#
+# Deepak Shenoy
+#
+# Feb 2023
+#
+#--------------------------------------------------------------------------------------------------------------------
+
+AWSTemplateFormationVersion: 2010-09-09
+Description: VPC Setup for the Simulator Setup
+
+Mappings:
+  SimulatorEnvironment:
+    Settings:
+      EnvName: simulator-env
+      VpcCIDR: 10.192.0.0/16
+      PublicSubnet1CIDR: 10.192.10.0/24
+      PublicSubnet2CIDR: 10.192.11.0/24
+      PrivateSubnet1CIDR: 10.192.20.0/24
+      PrivateSubnet2CIDR: 10.192.21.0/24
+Resources:
+  SimVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap [SimulatorEnvironment, Settings, VpcCIDR]
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: Simulator Environment
+  SimInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: Simulator Environment Internet Gateway
+  SimInternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref SimInternetGateway

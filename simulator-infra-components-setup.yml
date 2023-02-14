@@ -1,0 +1,16 @@
+#--------------------------------------------------------------------------------------------------------------------
+#
+# Simulator Infrastructure Component Setup
+#
+# Deepak Shenoy
+#
+# Feb 2023
+#
+#--------------------------------------------------------------------------------------------------------------------
+
+AWSTemplateFormationVersion: 2010-09-09
+Description: Component Configuration for the Simulator Infrastructure
+
+#Mappings:
+
+Resources:
