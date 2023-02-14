@@ -107,6 +107,8 @@ Resources:
     Properties:
       Domain: vpc
       Tags:
+        - Key: Name
+          Value: SimSys - EIP1
         - Key: AppCode
           Value: SimSys
 
@@ -116,6 +118,8 @@ Resources:
     Properties:
       Domain: vpc
       Tags:
+        - Key: Name
+          Value: SimSys - EIP2
         - Key: AppCode
           Value: SimSys
 
