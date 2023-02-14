@@ -175,7 +175,7 @@ Resources:
       NatGatewayId: !Ref SimNatGateway1
 
   SimPrivateSubnet1RouteTableAssociation:
-    Type: AWS::EC2::RouteTableAssociation
+    Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       RouteTableId: !Ref SimPrivateRouteTable1
       SubnetId: !Ref SimPrivateSubnet1
