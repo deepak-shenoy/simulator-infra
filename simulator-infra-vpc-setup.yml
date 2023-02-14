@@ -153,4 +153,54 @@ Resources:
       RouteTableId: !Ref SimPublicRouteTable
       SubnetId: !Ref SimPublicSubnet1
 
+  SimPublicSubnet2RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref SimPublicRouteTable
+      SubnetId: !Ref SimPublicSubnet2
+
+  SimPrivateRouteTable1:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref SimVPC
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimDefaultPrivateRoute1:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref SimPrivateRouteTable1
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref SimNatGateway1
+
+  SimPrivateSubnet1RouteTableAssociation:
+    Type: AWS::EC2::RouteTableAssociation
+    Properties:
+      RouteTableId: !Ref SimPrivateRouteTable1
+      SubnetId: !Ref SimPrivateSubnet1
+
+  SimPrivateRouteTable2:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref SimVPC
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimDefaultPrivateRoute2:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref SimPrivateRouteTable2
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref SimNatGateway2
+
+  SimPrivateSubnet2RouteTableAssociation:
+    Type: AWS::EC2::RouteTableAssociation
+    Properties:
+      RouteTableId: !Ref SimPrivateRouteTable2
+      SubnetId: !Ref SimPrivateSubnet2
+
+
+
 
