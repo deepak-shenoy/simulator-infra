@@ -8,7 +8,7 @@
 #
 #--------------------------------------------------------------------------------------------------------------------
 
-AWSTemplateFormationVersion: 2010-09-09
+AWSTemplateFormatVersion: 2010-09-09
 Description: VPC Setup for the Simulator Setup
 
 Mappings:
