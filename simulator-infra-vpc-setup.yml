@@ -196,10 +196,17 @@ Resources:
       NatGatewayId: !Ref SimNatGateway2
 
   SimPrivateSubnet2RouteTableAssociation:
-    Type: AWS::EC2::RouteTableAssociation
+    Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       RouteTableId: !Ref SimPrivateRouteTable2
       SubnetId: !Ref SimPrivateSubnet2
+
+  SimNoIngressSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: "no-ingress-sg"
+      GroupDescription: "Security group with no ingress rule"
+      VpcId: !Ref SimVPC
 
 Outputs:
   VPC:
