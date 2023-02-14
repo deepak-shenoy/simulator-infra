@@ -58,6 +58,8 @@ Resources:
       AvailabilityZone: !Select [0, !GetAZs 'us-east-1']
       CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PublicSubnet1CIDR]
       Tags:
+        - Key: Name
+          Value: SimSys - Public 1
         - Key: AppCode
           Value: SimSys
 
@@ -68,6 +70,8 @@ Resources:
       AvailabilityZone: !Select [1, !GetAZs 'us-east-1']
       CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PublicSubnet2CIDR]
       Tags:
+        - Key: Name
+          Value: SimSys - Public 2
         - Key: AppCode
           Value: SimSys
 
@@ -79,6 +83,8 @@ Resources:
       CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PrivateSubnet1CIDR]
       MapPublicIpOnLaunch: false
       Tags:
+        - Key: Name
+          Value: SimSys - Private 1
         - Key: AppCode
           Value: SimSys
 
@@ -90,6 +96,8 @@ Resources:
       CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PrivateSubnet2CIDR]
       MapPublicIpOnLaunch: false
       Tags:
+        - Key: Name
+          Value: SimSys - Private 2
         - Key: AppCode
           Value: SimSys
 
