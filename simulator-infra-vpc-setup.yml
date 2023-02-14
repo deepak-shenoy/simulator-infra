@@ -77,7 +77,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref SimVPC
-      AvailabilityZone: !Select [0, !GetAZz, 'us-east-1']
+      AvailabilityZone: !Select [0, !GetAZs 'us-east-1']
       CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PrivateSubnet1CIDR]
       MapPublicIpOnLaunch: false
       Tags:
@@ -88,7 +88,7 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref SimVPC
-      AvailabilityZone: !Select [1, !GetAZz, 'us-east-1']
+      AvailabilityZone: !Select [1, !GetAZs 'us-east-1']
       CidrBlock: !FindInMap [SimulatorEnvironment, Settings, PrivateSubnet2CIDR]
       MapPublicIpOnLaunch: false
       Tags:
@@ -204,7 +204,7 @@ Resources:
 Outputs:
   VPC:
     Description: Reference to the created VPC
-    Value: !SimVPC
+    Value: !Ref SimVPC
 
   PublicSubnets:
     Description: List of the public subnets
