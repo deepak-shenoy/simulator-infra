@@ -94,3 +94,63 @@ Resources:
       Tags:
         - Key: AppCode
           Value: SimSys
+
+  SimNatGateway1EIP:
+    Type: AWS::EC2::EIP
+    DependsOn: SimInternetGatewayAttachment
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimNatGateway2EIP:
+    Type: AWS::EC2::EIP
+    DependsOn: SimInternetGatewayAttachment
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimNatGateway1:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocatedId: !GetAtt SimNatGateway1EIP.AllocationId
+      SubnetId: !Ref PublicSubnet1
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimNatGateway2:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocatedId: !GetAtt SimNatGateway2EIP.AllocationId
+      SubnetId: !Ref PublicSubnet2
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimPublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref SimVPC
+      Tags:
+        - Key: AppCode
+          Value: SimSys
+
+  SimDefaultPublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: SimInternetGatewayAttachment
+    Properties:
+      RouteTableId: !Ref SimPublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref SimInternetGateway
+
+  SimPublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref SimPublicRouteTable
+      SubnetId: !Ref SimPublicSubnet1
+
+
