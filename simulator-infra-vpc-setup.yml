@@ -47,11 +47,7 @@ Resources:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       InternetGatewayId: !Ref SimInternetGateway
-      Tags:
-        - Key: AppCode
-          Value: SimSys
-        - Key: Name
-          Value: Simulator Environment Gateway Attachment
+      VpcId: !Ref SimVPC
 
   SimPublicSubnet1:
     Type: AWS::EC2::Subnet
